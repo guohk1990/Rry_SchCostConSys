@@ -1,31 +1,32 @@
-
-// Rry_SchCostConSysDlg.cpp : ʵ���ļ�
+﻿
+// Rry_SchCostConSysDlg.cpp : 实现文件
 //
 
 #include "stdafx.h"
 #include "Rry_SchCostConSys.h"
 #include "Rry_SchCostConSysDlg.h"
 #include "afxdialogex.h"
+#include "LoginDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
-// ����Ӧ�ó��򡰹��ڡ��˵���� CAboutDlg �Ի���
+// 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// �Ի�������
+// 对话框数据
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ֧��
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
-// ʵ��
+// 实现
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -43,7 +44,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CRry_SchCostConSysDlg �Ի���
+// CRry_SchCostConSysDlg 对话框
 
 
 
@@ -63,18 +64,20 @@ BEGIN_MESSAGE_MAP(CRry_SchCostConSysDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+//	ON_WM_CTLCOLOR()
+ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
-// CRry_SchCostConSysDlg ��Ϣ��������
+// CRry_SchCostConSysDlg 消息处理程序
 
 BOOL CRry_SchCostConSysDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ��������...���˵������ӵ�ϵͳ�˵��С�
+	// 将“关于...”菜单项添加到系统菜单中。
 
-	// IDM_ABOUTBOX ������ϵͳ���Χ�ڡ�
+	// IDM_ABOUTBOX 必须在系统命令范围内。
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -92,14 +95,19 @@ BOOL CRry_SchCostConSysDlg::OnInitDialog()
 		}
 	}
 
-	// ���ô˶Ի����ͼ�ꡣ��Ӧ�ó��������ڲ��ǶԻ���ʱ����ܽ��Զ�
-	//  ִ�д˲���
-	SetIcon(m_hIcon, TRUE);			// ���ô�ͼ��
-	SetIcon(m_hIcon, FALSE);		// ����Сͼ��
+	// 设置此对话框的图标。当应用程序主窗口不是对话框时，框架将自动
+	//  执行此操作
+	SetIcon(m_hIcon, TRUE);			// 设置大图标
+	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
-	// TODO: �ڴ����Ӷ���ĳ�ʼ������
+	// TODO: 在此添加额外的初始化代码
+	CLoginDlg mLogin;
+	if(mLogin.DoModal() != IDOK)
+	{
+		CDialog::OnCancel();
+	}
 
-	return TRUE;  // ���ǽ��������õ��ؼ������򷵻� TRUE
+	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
 void CRry_SchCostConSysDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -115,19 +123,19 @@ void CRry_SchCostConSysDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// �����Ի���������С����ť������Ҫ����Ĵ���
-//  �����Ƹ�ͼ�ꡣ����ʹ���ĵ�/��ͼģ�͵� MFC Ӧ�ó���
-//  �⽫�ɿ���Զ���ɡ�
+// 如果向对话框添加最小化按钮，则需要下面的代码
+//  来绘制该图标。对于使用文档/视图模型的 MFC 应用程序，
+//  这将由框架自动完成。
 
 void CRry_SchCostConSysDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ���ڻ��Ƶ��豸������
+		CPaintDC dc(this); // 用于绘制的设备上下文
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// ʹͼ���ڹ����������о���
+		// 使图标在工作区矩形中居中
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -135,7 +143,7 @@ void CRry_SchCostConSysDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// ����ͼ��
+		// 绘制图标
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -144,10 +152,22 @@ void CRry_SchCostConSysDlg::OnPaint()
 	}
 }
 
-//���û��϶���С������ʱϵͳ���ô˺���ȡ�ù��
-//��ʾ��
+//当用户拖动最小化窗口时系统调用此函数取得光标
+//显示。
 HCURSOR CRry_SchCostConSysDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
+}
+
+
+HBRUSH CRry_SchCostConSysDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  ÔÚ´Ë¸ü¸Ä DC µÄÈÎºÎÌØÐÔ
+
+	// TODO:  Èç¹ûÄ¬ÈÏµÄ²»ÊÇËùÐè»­±Ê£¬Ôò·µ»ØÁíÒ»¸ö»­±Ê
+
+	return hbr;
 }
 
