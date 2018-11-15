@@ -25,6 +25,27 @@
     <None Include="res\主界面.bmp">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\主界面1 .bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\费用控制.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\预算编制.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\员工信息.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\执行分析.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\主界面1.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\员工信息表.bmp">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rry_SchCostConSys.h">
@@ -48,6 +69,9 @@
     <ClInclude Include="MySQLConn.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ExployeeInfoDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Rry_SchCostConSys.cpp">
@@ -63,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MySQLConn.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ExployeeInfoDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

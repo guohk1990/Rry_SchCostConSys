@@ -26,7 +26,7 @@ MySQLConn::MySQLConn()
     user     = "root";
     password = "123456";
     database = "rry_schcostconsys";
-	q_mode   = "set names \'utf8\'";
+	q_mode   = "set names \'gbk\'";
 }
 
 MySQLConn::~MySQLConn()

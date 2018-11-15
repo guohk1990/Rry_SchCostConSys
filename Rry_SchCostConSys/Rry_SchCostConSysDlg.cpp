@@ -7,11 +7,14 @@
 #include "Rry_SchCostConSysDlg.h"
 #include "afxdialogex.h"
 #include "LoginDlg.h"
+#include "ExployeeInfoDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+//引用外部变量-员工号
+extern CString m_exployee_id_glb;
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
@@ -66,6 +69,7 @@ BEGIN_MESSAGE_MAP(CRry_SchCostConSysDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 //	ON_WM_CTLCOLOR()
 ON_WM_CTLCOLOR()
+ON_BN_CLICKED(IDC_BUTTON_YGXX, &CRry_SchCostConSysDlg::OnClickedButtonYgxx)
 END_MESSAGE_MAP()
 
 
@@ -106,6 +110,20 @@ BOOL CRry_SchCostConSysDlg::OnInitDialog()
 	{
 		CDialog::OnCancel();
 	}
+
+	//设置按钮背景图片
+    HBITMAP m_bitmap_ygxx;
+	HBITMAP m_bitmap_ysbz;
+	HBITMAP m_bitmap_fykz;
+	HBITMAP m_bitmap_zxfx;
+    m_bitmap_ygxx = (HBITMAP)::LoadImage(NULL,L"res/员工信息.bmp", IMAGE_BITMAP,0,0,LR_LOADFROMFILE|LR_CREATEDIBSECTION);
+	m_bitmap_ysbz = (HBITMAP)::LoadImage(NULL,L"res/预算编制.bmp", IMAGE_BITMAP,0,0,LR_LOADFROMFILE|LR_CREATEDIBSECTION);
+	m_bitmap_fykz = (HBITMAP)::LoadImage(NULL,L"res/费用控制.bmp", IMAGE_BITMAP,0,0,LR_LOADFROMFILE|LR_CREATEDIBSECTION);
+	m_bitmap_zxfx = (HBITMAP)::LoadImage(NULL,L"res/执行分析.bmp", IMAGE_BITMAP,0,0,LR_LOADFROMFILE|LR_CREATEDIBSECTION);
+    ((CButton *)GetDlgItem(IDC_BUTTON_YGXX))->SetBitmap(m_bitmap_ygxx);
+	((CButton *)GetDlgItem(IDC_BUTTON_YSBZ))->SetBitmap(m_bitmap_ysbz);
+	((CButton *)GetDlgItem(IDC_BUTTON_FYKZ))->SetBitmap(m_bitmap_fykz);
+	((CButton *)GetDlgItem(IDC_BUTTON_ZXFX))->SetBitmap(m_bitmap_zxfx);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -171,3 +189,19 @@ HBRUSH CRry_SchCostConSysDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
+
+
+
+void CRry_SchCostConSysDlg::OnClickedButtonYgxx()
+{
+	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	if(m_exployee_id_glb == "00000")
+	{
+	
+	}
+	else
+	{
+	    CExployeeInfoDlg m_ygxx;
+	    m_ygxx.DoModal();
+	}
+}

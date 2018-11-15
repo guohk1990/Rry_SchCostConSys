@@ -7,6 +7,8 @@
 #include "afxdialogex.h"
 #include "MySQLConn.h"
 
+//声明全局变量-员工号
+CString m_exployee_id_glb;
 
 // CLoginDlg 对话框
 
@@ -58,7 +60,7 @@ BOOL CLoginDlg::OnInitDialog()
 	m_Font_user.CreatePointFont(120, TEXT("黑体"), NULL);
 	m_Brush_user.CreateSolidBrush(RGB(255,255,255));
 	m_static_user.SetFont(&m_Font_user,true);
-	m_static_user.SetWindowText(TEXT("用户名:"));
+	m_static_user.SetWindowText(TEXT("员工号:"));
 	
 	//密码
 	m_Font_passwd.CreatePointFont(120, TEXT("黑体"), NULL);
@@ -102,12 +104,12 @@ void CLoginDlg::OnClickedButtonLogin()
 	UpdateData(TRUE);
 	if(m_user.IsEmpty() || m_passwd.IsEmpty())
 	{
-		MessageBox(_T("用户名或密码不能为空"));
+		MessageBox(_T("员工号或密码不能为空"));
 		return;
 	}
 	m_Time++;
 	CString m_string;	
-	m_string.Format(_T("select * from tb_user where user='%s'and passwd='%s'"), m_user,m_passwd);
+	m_string.Format(_T("select * from tb_user where exployee_id = '%s'and passwd = '%s'"), m_user,m_passwd);
 	const size_t strsize = ( m_string.GetLength() + 1 ) * 2; // 宽字符的长度;
     char * sql = new char[strsize]; //分配空间; 
     size_t sz = 0;
@@ -119,7 +121,7 @@ void CLoginDlg::OnClickedButtonLogin()
 	m_result = m_Myconn.GetRecordRow(sql);
 	if(m_result == 1)
 	{
-//		m_UserName = m_Name;
+		m_exployee_id_glb = m_user;
 		CDialog::OnOK();
 	}
 	else
@@ -131,7 +133,7 @@ void CLoginDlg::OnClickedButtonLogin()
 		}
 		else
 		{
-			MessageBox(_T("用户名或密码不正确"));
+			MessageBox(_T("员工号或密码不正确"));
 			m_user = "";
 			m_passwd = "";
 			UpdateData(FALSE);
