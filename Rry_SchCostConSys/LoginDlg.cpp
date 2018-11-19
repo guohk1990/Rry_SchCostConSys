@@ -139,7 +139,9 @@ void CLoginDlg::OnClickedButtonLogin()
 			UpdateData(FALSE);
 		}
 	}
-	m_Myconn.ExitMySQLConn();
+
+	//断开数据库连接
+    m_Myconn.ExitMySQLConn();
 }
 
 void CLoginDlg::OnClickedButtonReset()
@@ -148,4 +150,18 @@ void CLoginDlg::OnClickedButtonReset()
 	m_user = "";
 	m_passwd = "";
 	UpdateData(FALSE);
+}
+
+BOOL CLoginDlg::PreTranslateMessage(MSG* pMsg) 
+{
+    if(pMsg->message == WM_KEYDOWN) 
+    {
+        if(pMsg->wParam == VK_RETURN)//当按下键为回车键时
+        {
+            OnClickedButtonLogin();  //调用按钮函数
+
+            return TRUE;
+        }
+    }
+    return CDialog::PreTranslateMessage(pMsg);
 }

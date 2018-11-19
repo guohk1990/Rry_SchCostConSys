@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "LoginDlg.h"
 #include "ExployeeInfoDlg.h"
+#include "AdminInfoDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +33,7 @@ public:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -197,7 +199,8 @@ void CRry_SchCostConSysDlg::OnClickedButtonYgxx()
 	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
 	if(m_exployee_id_glb == "00000")
 	{
-	
+	    CAdminInfoDlg m_admininfo;
+		m_admininfo.DoModal();
 	}
 	else
 	{

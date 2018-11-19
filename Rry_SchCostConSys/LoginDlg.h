@@ -31,6 +31,7 @@ public:
 	CStatic m_static_user;
 	CStatic m_static_passwd;
 	virtual BOOL OnInitDialog();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnClickedButtonLogin();
 	afx_msg void OnClickedButtonReset();

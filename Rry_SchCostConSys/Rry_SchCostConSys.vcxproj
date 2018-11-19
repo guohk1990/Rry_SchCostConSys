@@ -183,7 +183,9 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ReadMe.txt" />
+    <None Include="res\bitmap1.bmp" />
     <None Include="res\Rry_SchCostConSys.ico" />
     <None Include="res\Rry_SchCostConSys.rc2" />
     <None Include="res\主界面.bmp" />
@@ -192,10 +194,14 @@
     <None Include="res\员工信息.bmp" />
     <None Include="res\员工信息表.bmp" />
     <None Include="res\执行分析.bmp" />
+    <None Include="res\教职员工标题.bmp" />
+    <None Include="res\新增员工信息.bmp" />
     <None Include="res\费用控制.bmp" />
     <None Include="res\预算编制.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddExployeeInfoDlg.h" />
+    <ClInclude Include="AdminInfoDlg.h" />
     <ClInclude Include="ExployeeInfoDlg.h" />
     <ClInclude Include="LoginDlg.h" />
     <ClInclude Include="MySQLConn.h" />
@@ -206,6 +212,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddExployeeInfoDlg.cpp" />
+    <ClCompile Include="AdminInfoDlg.cpp" />
     <ClCompile Include="ExployeeInfoDlg.cpp" />
     <ClCompile Include="LoginDlg.cpp" />
     <ClCompile Include="MySQLConn.cpp" />

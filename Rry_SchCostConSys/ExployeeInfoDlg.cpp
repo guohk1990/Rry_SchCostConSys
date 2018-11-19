@@ -122,6 +122,9 @@ BOOL CExployeeInfoDlg::OnInitDialog()
 	m_e_gradtime.SetWindowText(m_exployee_info_temp[18][0]);
 	m_e_remark.SetWindowText(m_exployee_info_temp[19][0]);
 
+	//断开数据库连接
+    m_Myconn.ExitMySQLConn();
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// Òì³£: OCX ÊôÐÔÒ³Ó¦·µ»Ø FALSE
 }
